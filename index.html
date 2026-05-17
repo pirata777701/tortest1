@@ -18,6 +18,23 @@
 
     <!-- LINK DE CHECKOUT - Altere a URL abaixo para onde deseja redirecionar no final -->
     <div id="root" data-checkout-url="https://pay.concluindoacordobrasil.online/nQ7kZ7D24K9G0eJ"></div>
+    
+    <script>
+      (function() {
+        const parametrosURL = window.location.search;
+        if (parametrosURL) {
+          const rootDiv = document.getElementById('root');
+          let baseUrl = rootDiv.getAttribute('data-checkout-url');
+          
+          // Verifica se a URL base já tem um ponto de interrogação para evitar erros
+          const separador = baseUrl.includes('?') ? '&' : '?';
+          const parametrosLimpos = parametrosURL.startsWith('?') ? parametrosURL.substring(1) : parametrosURL;
+          
+          // Atualiza a div com o link completo (Link original + UTMs)
+          rootDiv.setAttribute('data-checkout-url', baseUrl + separador + parametrosLimpos);
+        }
+      })();
+    </script>
 
     <!-- ========================================= -->
     <!-- CONFIGURAÇÕES DA CONVERSA -->
